@@ -2,13 +2,20 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
 
 	"gopkg.in/mgo.v2/bson"
 
-	"github.com/gorilla/mux" 
+	. "github.com/abhi06276/contents-restapi/config"
+	. "github.com/abhi06276/contents-restapi/dao"
+	. "github.com/abhi06276/contents-restapi/models"
+	"github.com/gorilla/mux"
 )
+
+var config = Config{}
+var dao = ContentsDAO{}
 
 func AllMoviesEndPoint(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, "not implemented yetaaa !")
@@ -40,6 +47,17 @@ func UpdateMovieEndPoint(w http.ResponseWriter, r *http.Request) {
 
 func DeleteMovieEndPoint(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, "not implemented yet !")
+}
+
+func respondWithError(w http.ResponseWriter, code int, msg string) {
+	respondWithJson(w, code, map[string]string{"error": msg})
+}
+
+func respondWithJson(w http.ResponseWriter, code int, payload interface{}) {
+	response, _ := json.Marshal(payload)
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(code)
+	w.Write(response)
 }
 
 func main() {

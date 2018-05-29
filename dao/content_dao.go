@@ -2,6 +2,9 @@ package dao
 
 import (
 	"log"
+
+	. "github.com/abhi06276/contents-restapi/models"
+
 	mgo "gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 )
@@ -34,26 +37,26 @@ func (m *ContentsDAO) FindAll() ([]ContentModel, error) {
 }
 
 // Find a movie by its id
-func (m *MoviesDAO) FindById(id string) (ContentModel, error) {
+func (m *ContentsDAO) FindById(id string) (ContentModel, error) {
 	var movie ContentModel
 	err := db.C(COLLECTION).FindId(bson.ObjectIdHex(id)).One(&movie)
 	return movie, err
 }
 
 // Insert a movie into database
-func (m *MoviesDAO) Insert(movie ContentModel) error {
+func (m *ContentsDAO) Insert(movie ContentModel) error {
 	err := db.C(COLLECTION).Insert(&movie)
 	return err
 }
 
 // Delete an existing movie
-func (m *MoviesDAO) Delete(movie ContentModel) error {
+func (m *ContentsDAO) Delete(movie ContentModel) error {
 	err := db.C(COLLECTION).Remove(&movie)
 	return err
 }
 
 // Update an existing movie
-func (m *MoviesDAO) Update(movie ContentModel) error {
+func (m *ContentsDAO) Update(movie ContentModel) error {
 	err := db.C(COLLECTION).UpdateId(movie.ID, &movie)
 	return err
 }
