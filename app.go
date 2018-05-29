@@ -27,6 +27,7 @@ func FindMovieEndpoint(w http.ResponseWriter, r *http.Request) {
 
 func CreateContentEndPoint(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, "not implemented yet !")
+	defer r.Body.Close()
 	var content ContentModel
 
 	if err := json.NewDecoder(r.Body).Decode(&content); err != nil {
@@ -58,6 +59,15 @@ func respondWithJson(w http.ResponseWriter, code int, payload interface{}) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(code)
 	w.Write(response)
+}
+
+// Parse the configuration file 'config.toml', and establish a connection to DB
+func init() {
+	config.Read()
+
+	dao.Server = config.Server
+	dao.Database = config.Database
+	dao.Connect()
 }
 
 func main() {
