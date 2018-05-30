@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 
 	"gopkg.in/mgo.v2/bson"
 
@@ -76,13 +77,19 @@ func init() {
 }
 
 func main() {
-	r := mux.NewRouter()
-	r.HandleFunc("/content", GetAllContents).Methods("GET")
-	r.HandleFunc("/content", CreateContentEndPoint).Methods("POST")
-	r.HandleFunc("/content", UpdateMovieEndPoint).Methods("PUT")
-	r.HandleFunc("/content", DeleteMovieEndPoint).Methods("DELETE")
-	r.HandleFunc("/content/{app_id}", FindContentEndpoint).Methods("GET")
-	if err := http.ListenAndServe(":", r); err != nil {
-		log.Fatal(err)
+	port := os.Getenv("PORT")
+
+	if port == "" {
+		log.Fatal("$PORT must be set")
+
+		r := mux.NewRouter()
+		r.HandleFunc("/content", GetAllContents).Methods("GET")
+		r.HandleFunc("/content", CreateContentEndPoint).Methods("POST")
+		r.HandleFunc("/content", UpdateMovieEndPoint).Methods("PUT")
+		r.HandleFunc("/content", DeleteMovieEndPoint).Methods("DELETE")
+		r.HandleFunc("/content/{app_id}", FindContentEndpoint).Methods("GET")
+		if err := http.ListenAndServe(":"+port, r); err != nil {
+			log.Fatal(err)
+		}
 	}
 }

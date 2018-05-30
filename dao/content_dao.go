@@ -23,7 +23,7 @@ const (
 // Establish a connection to database
 func (m *ContentsDAO) Connect() {
 	// session, err := mgo.Dial(m.Server)
-	session, err := mgo.Dial("abhi1551:Abhi@1551@ds139920.mlab.com:39920")
+	session, err := mgo.Dial("mongodb://abhi1551:Abhi@1551@ds139920.mlab.com:39920/")
 	if err != nil {
 		log.Fatal(err)
 	}
