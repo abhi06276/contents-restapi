@@ -1,1 +1,1 @@
-web: contents-restapi
+web: go-contents-restapi
