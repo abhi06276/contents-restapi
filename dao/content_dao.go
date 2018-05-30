@@ -37,10 +37,10 @@ func (m *ContentsDAO) FindAll() ([]ContentModel, error) {
 }
 
 // Find a movie by its id
-func (m *ContentsDAO) FindById(id string) (ContentModel, error) {
-	var movie ContentModel
-	err := db.C(COLLECTION).FindId(bson.ObjectIdHex(id)).One(&movie)
-	return movie, err
+func (m *ContentsDAO) FindByAppId(id string) ([]ContentModel, error) {
+	var contents []ContentModel
+	err := db.C(COLLECTION).Find(bson.M{"app_id": id}).All(&contents)
+	return contents, err
 }
 
 // Insert a movie into database

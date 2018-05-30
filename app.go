@@ -17,16 +17,21 @@ import (
 var config = Config{}
 var dao = ContentsDAO{}
 
-func AllMoviesEndPoint(w http.ResponseWriter, r *http.Request) {
+func GetAllContents(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, "not implemented yetaaa !")
 }
 
-func FindMovieEndpoint(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintln(w, "this is also not  implemented yet !")
+func FindContentEndpoint(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	contents, err := dao.FindByAppId(params["app_id"])
+	if err != nil {
+		respondWithError(w, http.StatusBadRequest, "Invalid App ID")
+		return
+	}
+	respondWithJson(w, http.StatusOK, contents)
 }
 
 func CreateContentEndPoint(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintln(w, "not implemented yet !")
 	defer r.Body.Close()
 	var content ContentModel
 
@@ -72,11 +77,11 @@ func init() {
 
 func main() {
 	r := mux.NewRouter()
-	r.HandleFunc("/movies", AllMoviesEndPoint).Methods("GET")
+	r.HandleFunc("/content", GetAllContents).Methods("GET")
 	r.HandleFunc("/content", CreateContentEndPoint).Methods("POST")
-	r.HandleFunc("/movies", UpdateMovieEndPoint).Methods("PUT")
-	r.HandleFunc("/movies", DeleteMovieEndPoint).Methods("DELETE")
-	r.HandleFunc("/movies/{id}", FindMovieEndpoint).Methods("GET")
+	r.HandleFunc("/content", UpdateMovieEndPoint).Methods("PUT")
+	r.HandleFunc("/content", DeleteMovieEndPoint).Methods("DELETE")
+	r.HandleFunc("/content/{app_id}", FindContentEndpoint).Methods("GET")
 	if err := http.ListenAndServe(":3000", r); err != nil {
 		log.Fatal(err)
 	}
