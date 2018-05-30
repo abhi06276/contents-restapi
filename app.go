@@ -73,7 +73,7 @@ func init() {
 
 	dao.Server = config.Server
 	dao.Database = config.Database
-	// dao.Connect()
+	dao.Connect()
 }
 
 func main() {
