@@ -82,7 +82,7 @@ func main() {
 	r.HandleFunc("/content", UpdateMovieEndPoint).Methods("PUT")
 	r.HandleFunc("/content", DeleteMovieEndPoint).Methods("DELETE")
 	r.HandleFunc("/content/{app_id}", FindContentEndpoint).Methods("GET")
-	if err := http.ListenAndServe(":3000", r); err != nil {
+	if err := http.ListenAndServe(":", r); err != nil {
 		log.Fatal(err)
 	}
 }
