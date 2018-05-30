@@ -1,1 +1,1 @@
-web: contents-restapi
+api: contents-restapi
