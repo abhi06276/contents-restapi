@@ -1,2 +1,2 @@
-server="https://sheltered-plateau-11813.herokuapp.com/"
+server="mongodb://abhi1551:Abhi@1551@ds139920.mlab.com:39920"
 database="contents_db"
