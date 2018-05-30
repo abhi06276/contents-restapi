@@ -1,1 +1,1 @@
-web: go run app.go
+web: contents-restapi
