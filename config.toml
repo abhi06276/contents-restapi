@@ -1,2 +1,2 @@
-server="localhost"
+server="https://sheltered-plateau-11813.herokuapp.com/"
 database="contents_db"
