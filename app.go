@@ -79,17 +79,18 @@ func init() {
 func main() {
 	port := os.Getenv("PORT")
 
-	if port == "" {
-		log.Fatal("$PORT must be set")
-		fmt.Println("====== Listening to port", port)
-		r := mux.NewRouter()
-		r.HandleFunc("/content", GetAllContents).Methods("GET")
-		r.HandleFunc("/content", CreateContentEndPoint).Methods("POST")
-		r.HandleFunc("/content", UpdateMovieEndPoint).Methods("PUT")
-		r.HandleFunc("/content", DeleteMovieEndPoint).Methods("DELETE")
-		r.HandleFunc("/content/{app_id}", FindContentEndpoint).Methods("GET")
-		if err := http.ListenAndServe(":"+port, r); err != nil {
-			log.Fatal(err)
-		}
+	if len(port) == 0 {
+		port = "8080"
+		log.Println("$PORT must be set")
+	}
+	fmt.Println("Listening to port", port)
+	r := mux.NewRouter()
+	r.HandleFunc("/content", GetAllContents).Methods("GET")
+	r.HandleFunc("/content", CreateContentEndPoint).Methods("POST")
+	r.HandleFunc("/content", UpdateMovieEndPoint).Methods("PUT")
+	r.HandleFunc("/content", DeleteMovieEndPoint).Methods("DELETE")
+	r.HandleFunc("/content/{app_id}", FindContentEndpoint).Methods("GET")
+	if err := http.ListenAndServe(":"+port, r); err != nil {
+		log.Fatal(err)
 	}
 }
