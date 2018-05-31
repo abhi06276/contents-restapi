@@ -1,6 +1,7 @@
 package dao
 
 import (
+	"fmt"
 	"log"
 
 	. "github.com/abhi06276/contents-restapi/models"
@@ -23,8 +24,12 @@ const (
 // Establish a connection to database
 func (m *ContentsDAO) Connect() {
 	// session, err := mgo.Dial(m.Server)
+	fmt.Println("Inside conenct before Dial call ")
 	session, err := mgo.Dial("mongodb://abhi1551:Abhi@1551@ds139920.mlab.com:39920/contents_db")
+	fmt.Println("Inside conenct after Dial call ")
 	if err != nil {
+		fmt.Println("Inside error ", err)
+
 		log.Fatal(err)
 	}
 	db = session.DB(m.Database)
