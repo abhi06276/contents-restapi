@@ -1,1 +1,1 @@
-web: contents-restapi
+web: contents-restapi -p $PORT

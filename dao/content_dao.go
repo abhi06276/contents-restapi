@@ -38,6 +38,7 @@ func (m *ContentsDAO) Connect() {
 
 		log.Fatal(err)
 	}
+
 	db = session.DB(m.Database)
 }
 
