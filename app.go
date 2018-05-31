@@ -82,7 +82,7 @@ func main() {
 	port := os.Getenv("PORT")
 
 	if len(port) == 0 {
-		port = "8080"
+		port = "3000"
 		fmt.Println("$PORT must be set")
 	}
 	fmt.Println("Listening to port", port)

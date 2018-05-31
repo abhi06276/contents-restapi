@@ -9,4 +9,5 @@ type ContentModel struct {
 	Description   string        `bson:"description" json:"description"`
 	CoverImage    string        `bson:"cover_image" json:"cover_image"`
 	Url           string        `bson:"url" json:"url"`
+	ContentType   string        `bson:"content_type" json:"content_type"`
 }
