@@ -77,6 +77,8 @@ func init() {
 }
 
 func main() {
+	fmt.Println("main funciton called")
+
 	port := os.Getenv("PORT")
 
 	if len(port) == 0 {
