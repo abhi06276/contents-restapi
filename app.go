@@ -81,7 +81,7 @@ func main() {
 
 	if port == "" {
 		log.Fatal("$PORT must be set")
-
+		fmt.Println("====== Listening to port", port)
 		r := mux.NewRouter()
 		r.HandleFunc("/content", GetAllContents).Methods("GET")
 		r.HandleFunc("/content", CreateContentEndPoint).Methods("POST")
