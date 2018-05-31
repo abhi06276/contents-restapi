@@ -29,7 +29,7 @@ func (m *ContentsDAO) Connect() {
 	session, err := mgo.DialWithInfo(&mgo.DialInfo{
 		Addrs:    []string{"ds139920.mlab.com:39920/contents_db"},
 		Username: "abhi1551",
-		Password: "Abhi@11551",
+		Password: "Abhi@1551",
 		Database: "contents_db",
 	})
 	fmt.Println("Inside conenct after Dial call ")
