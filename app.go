@@ -81,7 +81,7 @@ func main() {
 
 	if len(port) == 0 {
 		port = "8080"
-		log.Println("$PORT must be set")
+		fmt.Println("$PORT must be set")
 	}
 	fmt.Println("Listening to port", port)
 	r := mux.NewRouter()
