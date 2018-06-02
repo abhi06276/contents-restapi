@@ -10,4 +10,6 @@ type ContentModel struct {
 	CoverImage    string        `bson:"cover_image" json:"cover_image"`
 	Url           string        `bson:"url" json:"url"`
 	ContentType   string        `bson:"content_type" json:"content_type"`
+	VideoId       string        `bson:"video_id" json:"video_id"`
+	PublishedOn   string        `bson:"published_on" json:"published_on"`
 }
